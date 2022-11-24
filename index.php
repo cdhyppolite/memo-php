@@ -73,6 +73,7 @@ $listeDesTaches = lireDonnees($cnx, $requete);
     <title>MEMO | Liste de tâches</title>
     <meta name="description" content="Application Web de gestion de tâches - à produire dans le cadre du TP #2 du cours 582-3W3.">
     <link rel="stylesheet" href="ressources/css/styles.css">
+    <link rel="icon" href="ressources/images/favicon.ico">
 </head>
 <body>
     <div class="conteneur">
