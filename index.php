@@ -1,4 +1,8 @@
 <?php
+//Nouvelle requete pour corriger l'heure sur siteground
+// SET GLOBAL time_zone ='-05:00';
+// SELECT DATE_ADD(CURRENT_TIMESTAMP,interval -5 hour)
+
 // Importer la base de données.
 include('lib/bd.lib.php');
 
