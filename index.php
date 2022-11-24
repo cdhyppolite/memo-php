@@ -106,3 +106,10 @@ $listeDesTaches = lireDonnees($cnx, $requete);
     </div>
 </body>
 </html>
+
+<script>
+	//Ne pas ajouté la même tâche plusieurs fois si l'on actualise la page
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
