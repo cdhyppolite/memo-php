@@ -21,15 +21,9 @@ $requete = "SELECT id, texte, accomplie, date_ajout,
 // Filter les tâches à faire et celle complétées.
 if(isset($_GET['filtrer'])) {
     //Modifer la requête actuel pour afficher les tâches que l'on souhaite trier.
-    if($_GET['filtrer'] == 1) {
-        $requete ="SELECT id, texte, accomplie, date_ajout,
+    $requete ="SELECT id, texte, accomplie, date_ajout,
             DATE_FORMAT(date_ajout, '%d/%m/%Y à %H:%i:%s') AS date_ajout_modifie
-            FROM tache WHERE accomplie=1 ORDER BY date_ajout DESC";
-    } else {
-        $requete ="SELECT id, texte, accomplie, date_ajout,
-            DATE_FORMAT(date_ajout, '%d/%m/%Y à %H:%i:%s') AS date_ajout_modifie
-            FROM tache WHERE accomplie=0 ORDER BY date_ajout DESC";
-    }
+            FROM tache WHERE accomplie=".$_GET['filtrer']." ORDER BY date_ajout DESC";
 }
 //Ajouter une tâche
 if(isset($_POST['texteTache'])) {
@@ -54,13 +48,8 @@ if(isset($_GET['basculer'])) {
 
     // Effectuer une reqête indépendante de la précédente selon l'état actuel
     // pour le changer
-    if($etatActuel['accomplie']==1) {
-        $requeteBasculer0 = lireDonnees($cnx, "UPDATE tache SET accomplie = 0
-        WHERE id = $tacheAChanger");
-    } else {
-        $requeteBasculer1 = lireDonnees($cnx, "UPDATE tache SET accomplie = 1 
-        WHERE id = $tacheAChanger");
-    }    
+    $requeteBasculer = lireDonnees($cnx, "UPDATE tache SET accomplie =
+        NOT accomplie WHERE id = $tacheAChanger");
 }
 //Listes des tâches à afficher
 $listeDesTaches = lireDonnees($cnx, $requete);
