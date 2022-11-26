@@ -20,6 +20,7 @@ $requete = "SELECT id, texte, accomplie, date_ajout,
 
 // Filter les tâches à faire et celle complétées.
 if(isset($_GET['filtrer'])) {
+	if (($_GET['filtrer']!=0) || ($_GET['filtrer']!=1)) $_GET['filtrer'] =0;
     //Modifer la requête actuel pour afficher les tâches que l'on souhaite trier.
     $requete ="SELECT id, texte, accomplie, date_ajout,
             DATE_FORMAT(date_ajout, '%d/%m/%Y à %H:%i:%s') AS date_ajout_modifie
