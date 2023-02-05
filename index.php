@@ -19,9 +19,10 @@ $requete = "SELECT id, texte, accomplie, date_ajout,
     // l'ordre n'est plus le bon.
 
 // Filter les tâches à faire et celle complétées.
+$filtresPossible = array(0,1);
 if(isset($_GET['filtrer'])) {
-	if (($_GET['filtrer']!=0) || ($_GET['filtrer']!=1)) $_GET['filtrer'] =0;
     //Modifer la requête actuel pour afficher les tâches que l'on souhaite trier.
+    if (!in_array($_GET["filtrer"], $filtresPossible)) $_GET['filtrer'] = 0;
     $requete ="SELECT id, texte, accomplie, date_ajout,
             DATE_FORMAT(date_ajout, '%d/%m/%Y à %H:%i:%s') AS date_ajout_modifie
             FROM tache WHERE accomplie=".$_GET['filtrer']." ORDER BY date_ajout DESC";
