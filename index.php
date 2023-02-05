@@ -53,6 +53,10 @@ if(isset($_GET['basculer'])) {
     $requeteBasculer = lireDonnees($cnx, "UPDATE tache SET accomplie =
         NOT accomplie WHERE id = $tacheAChanger");
 }
+//Supprimer des tâches
+if(isset($_GET['supprimer'])) {
+    $requeteSupprimer = lireDonnees($cnx, "DELETE FROM tache WHERE id > 17");
+}
 //Listes des tâches à afficher
 $listeDesTaches = lireDonnees($cnx, $requete);
 ?>
@@ -76,6 +80,7 @@ $listeDesTaches = lireDonnees($cnx, $requete);
             <a href="index.php?filtrer=1" title="Afficher les tâches complétées uniquement.">Complétées</a>
             <a href="index.php?filtrer=0" title="Afficher les tâches non-complétées uniquement.">Non-complétées</a>
             <a href="index.php" title="Afficher toutes les tâches.">Toutes</a>
+	    <a href="index.php?supprimer=1" title="Supprime 'toutes' les tâches.">Supprimer</a>
         </div>
         <ul class="liste-taches">
 
