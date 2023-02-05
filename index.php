@@ -43,11 +43,6 @@ if(isset($_POST['texteTache'])) {
 if(isset($_GET['basculer'])) {
     //l'id de la tâche à changer
     $tacheAChanger = $_GET['basculer'];
-    //état actuel de la tâche à changer
-    $tabEtatActuel  = lireDonnees($cnx, "SELECT accomplie
-    FROM tache WHERE id=$tacheAChanger");
-    $etatActuel = mysqli_fetch_assoc($tabEtatActuel);
-
     // Effectuer une reqête indépendante de la précédente selon l'état actuel
     // pour le changer
     $requeteBasculer = lireDonnees($cnx, "UPDATE tache SET accomplie =
